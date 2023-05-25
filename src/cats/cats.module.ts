@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { CatsController } from './cats.controller';
 import { CatsService } from './cats.service';
 import { connection } from './connection';
+import { HelloModule } from 'src/hello/hello.module';
 
 const mockCatsService = {
   cats: [{ name: 'tim', age: 2, breed: 'siamese' }],
@@ -18,6 +19,7 @@ const configFactory = {
 };
 
 @Module({
+  imports: [HelloModule],
   controllers: [CatsController],
   providers: [
     {

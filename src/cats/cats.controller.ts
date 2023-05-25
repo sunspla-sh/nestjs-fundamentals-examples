@@ -2,6 +2,7 @@ import { Controller, Get, Inject } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { Cat } from './interfaces/cat.interface';
 import { Connection } from './connection';
+import { HelloService } from 'src/hello/hello.service';
 
 @Controller('cats')
 export class CatsController {
@@ -13,6 +14,7 @@ export class CatsController {
     @Inject('MockCatsSErvice') mockCatsService: CatsService,
     @Inject('CONFIG') config,
     private catsService: CatsService,
+    private helloService: HelloService,
   ) {
     this.connection = connection;
     this.mockCatsService = mockCatsService;
@@ -21,6 +23,7 @@ export class CatsController {
 
   @Get()
   async findAll(): Promise<Cat[]> {
+    this.helloService.sayHello('haha no cats');
     return this.catsService.findAll();
   }
 
